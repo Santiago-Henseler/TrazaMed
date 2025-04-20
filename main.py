@@ -7,8 +7,8 @@ from tkinter import ttk
 from selenium import webdriver
 
 # Defino constantes
-user = 937201377
-clave = 134
+user = 
+clave = 
 
 fecha_lejana = '01/06/2022'
 
