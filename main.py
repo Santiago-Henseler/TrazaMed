@@ -45,14 +45,13 @@ def guardar_datos(driver):
     archivo.close()
 
 def traer_datos(drogeria, drogerias):
+        index = drogerias.index(drogeria)+1
+        path1 = '/html/body/div/table/tbody/tr/td/div/table/tbody/tr[2]/td/div/div/form/table/tbody/tr/td[2]/table/tbody/'                
+        driver.find_element("xpath", f'{path1}tr[2]/td[2]/select/option[{index}]').click()
+        time.sleep(1)
+        driver.find_element("xpath", f'{path1}tr[3]/td[3]/input').click()
 
-    index = drogerias.index(drogeria)+1
-    path1 = '/html/body/div/table/tbody/tr/td/div/table/tbody/tr[2]/td/div/div/form/table/tbody/tr/td[2]/table/tbody/'                
-    driver.find_element("xpath", f'{path1}tr[2]/td[2]/select/option[{index}]').click()
-    time.sleep(1)
-    driver.find_element("xpath", f'{path1}tr[3]/td[3]/input').click()
-
-    guardar_datos(driver)
+        guardar_datos(driver)
 
 def trazar(drogueria, drogerias):
 
@@ -134,7 +133,12 @@ def main():
 
     # Obtengo las drogerias que puedo trazar
     time.sleep(1)
-    drogerias = [i.text for i in Select(driver.find_element("xpath", f'{path1}tr[2]/td[2]/select')).options]
+    try:
+        drogerias = [i.text for i in Select(driver.find_element("xpath", f'{path1}tr[2]/td[2]/select')).options]
+    except:
+         messagebox.showerror("Error", "Para la fecha indicada no hay remitos a trazar")
+         archivo.close()
+         sys.exit()
     
     # Agrego seccion de drogeria a la pestaña
     canvas2 = tk.Canvas(root, width=400, height=300, relief='raised')
