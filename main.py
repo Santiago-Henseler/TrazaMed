@@ -116,6 +116,7 @@ def trazar(drogueria, drogerias):
 
     messagebox.showinfo(title="FIN DE TRAZA", message="Se termino de trazar")
     archivo.close()
+    driver.quit()
     sys.exit()
 def main():
 
@@ -232,4 +233,5 @@ root.mainloop()
 ####################################################################
 ####################################################################
 ####################################################################
+
 
