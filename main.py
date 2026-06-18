@@ -23,6 +23,11 @@ def inicio(driver):
     driver.find_element("xpath", f'{path0}tr[2]/td[2]/input').send_keys(clave)
     driver.find_element("xpath", f'{path0}tr[3]/td[2]/input[2]').click()
 
+    try:
+        driver.find_element("xpath", '/html/body/div[4]/div/div/div[1]/button').click()
+    except:
+        print("")
+    
     #  entro a la seccion de trazas
     if(len(driver.find_elements("xpath", f'/html/body/div[7]')) > 0):
         driver.find_element("xpath", f'/html/body/div[5]/div/div/div[1]/button').click()
